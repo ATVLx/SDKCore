@@ -61,7 +61,7 @@ namespace Colibry {
 			List<Entity> tc = new List<Entity>();
 			for (int i=0; i<array.Length; i++)
 			{
-				tc.Add((JSONtoMyClass(array[i]) as Entity));
+				tc.Add((new Entity().JSONtoMyClass(array[i]) as Entity));
 			}
 			return tc.ToArray();
 		}

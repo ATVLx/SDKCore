@@ -295,9 +295,9 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			
 			shag++;
 			
-			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "entitiessave")) {
+			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "entitiescreate")) {
 				ResultText.text="GettingData!!!";
-				apples.entitiessave(fpuniversalResponse);
+				apples.entitiescreate(fpuniversalResponse);
 			}
 			
 		}

@@ -70,7 +70,7 @@ public class MyClass: ColibrySerializeHelperCustomClass
 		List<MyClass> tc = new List<MyClass>();
 		for (int i=0; i<array.Length; i++)
 		{
-			tc.Add((JSONtoMyClass(array[i]) as MyClass));
+			tc.Add((new MyClass().JSONtoMyClass(array[i]) as MyClass));
 		}
 		return tc.ToArray();
 	}

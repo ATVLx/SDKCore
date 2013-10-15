@@ -107,18 +107,28 @@ namespace Colibry {
 			SDKCorePlugin.SDKCorePluginSendRequest(customsign,ColibryEntitiesCmds.ENTITIES_FIND, requeststring,sdkResponse,fp);
 		}
 		
-		public void entitiessave(SDKCorePluginCustomCallbackDelegate fp)
+		public void entitiescreate(SDKCorePluginCustomCallbackDelegate fp)
 		{
 			JSON roottosend=new JSON();
+			//custom class array
+			List<JSON> jsonarray = new List<JSON>();
+			
+			foreach (var value in EntityDictionary.Values)
+			{
+			    jsonarray.Add((value as Entity).ToJSON());
+			}
+				
+			roottosend["arr"]=jsonarray.ToArray();
 
 			
 			string requeststring;
 			
 			requeststring="{\"collection\":\""+collectionname+"\",\"object\":"+roottosend.serialized+"}";
 			
-			string customsign=AddToSign(ColibryEntitiesRequestSigns.ENTITIES_SAVE);							
-			SDKCorePlugin.SDKCorePluginSendRequest(customsign,ColibryEntitiesCmds.ENTITIES_SAVE, requeststring,sdkResponse,fp);
+			string customsign=AddToSign(ColibryEntitiesRequestSigns.ENTITIES_CREATE);							
+			SDKCorePlugin.SDKCorePluginSendRequest(customsign,ColibryEntitiesCmds.ENTITIES_CREATE, requeststring,sdkResponse,fp);
 		}
+		
 		
 		//for entity
 		public void entitycreate(SDKCorePluginCustomCallbackDelegate fp, Entity inobject)
@@ -326,23 +336,39 @@ namespace Colibry {
 				Debug.Log ("Collection type not set!!!");
 				return;
 			}
-		    Debug.Log (root.serialized);
-		    EntityDictionary.Clear ();
+		    EntityDictionary.Clear();
 			
 			//custom class array
-			JSON[] array=root.ToArray<JSON>("");
+			JSON[] array=root.ToArray<JSON>("result");
 				
 			System.Type customtype = collectiontype;
 			var customclass=System.Activator.CreateInstance(customtype);
-			Entity[] objectarray=((customclass as ColibrySerializeHelperCustomClass).Array(array) as Entity[]);	
+			Entity[] objectarray=((customclass as Entity).Array(array) as Entity[]);	
 			for(int i=0;i<objectarray.Length;i++)
 			{
 				EntityDictionary.Add (objectarray[i].id,objectarray[i]);
 			}
 		}
 		
-		private void entitiessaveResponse(JSON root)
+		private void entitiescreateResponse(JSON root)
 		{
+			if(collectiontype==null)
+			{
+				Debug.Log ("Collection type not set!!!");
+				return;
+			}
+		    EntityDictionary.Clear();
+			
+			//custom class array
+			JSON[] array=root.ToArray<JSON>("result");
+				
+			System.Type customtype = collectiontype;
+			var customclass=System.Activator.CreateInstance(customtype);
+			Entity[] objectarray=((customclass as Entity).Array(array) as Entity[]);	
+			for(int i=0;i<objectarray.Length;i++)
+			{
+				EntityDictionary.Add (objectarray[i].id,objectarray[i]);
+			}
 		}
 		
 		private void entitydeleteResponse(JSON root,string objectHashCode)
@@ -461,9 +487,9 @@ namespace Colibry {
 			        entitiesfindResponse(root);
 			    }
 				
-				if(clearedsignature==ColibryEntitiesRequestSigns.ENTITIES_SAVE)
+				if(clearedsignature==ColibryEntitiesRequestSigns.ENTITIES_CREATE)
 			    {
-			        entitiessaveResponse(root);
+			        entitiescreateResponse(root);
 			    }
 				
 				if(clearedsignature==ColibryEntitiesRequestSigns.ENTITY_DELETE)

@@ -131,7 +131,7 @@ public class MyClass2: Entity
 		List<MyClass2> tc = new List<MyClass2>();
 		for (int i=0; i<array.Length; i++)
 		{
-			tc.Add((JSONtoMyClass(array[i]) as MyClass2));
+			tc.Add((new MyClass2().JSONtoMyClass(array[i]) as MyClass2));
 		}
 		return tc.ToArray();
 	}
