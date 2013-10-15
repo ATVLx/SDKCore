@@ -90,7 +90,6 @@ namespace Colibry {
 				{
 		        	newurl+="/";
 				}
-		        
 				newurl+=cmd;
 		    }
 		    

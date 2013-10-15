@@ -31,15 +31,13 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 	static private TestSceneController inst=null;
 	string playerName = "UnityPlayer";
 	float buttonwidth=100*2;
-	float buttonheight=25*2;
+	float buttonheight=20*2;
 	float centerxsmex=110;
-	float between=5;
+	float between=3;
 	Sostoyanie curSost=Sostoyanie.NotLoged;
 	
 	void Update()
 	{
-		//if(user!=null)
-		//	user.signIn(signInResponse);
 	}
 
 	// Use this for initialization
@@ -128,14 +126,14 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 	static SDKCorePluginCustomCallbackDelegate fpsignOutResponse=new SDKCorePluginCustomCallbackDelegate(signOutResponse);
 	static SDKCorePluginCustomCallbackDelegate fpdeleteResponse=new SDKCorePluginCustomCallbackDelegate(deleteResponse);
 	
-	/*static SDKCorePluginCustomCallbackDelegate fppurchaseiOSResponse=new SDKCorePluginCustomCallbackDelegate(purchaseiOSResponse);
+	static SDKCorePluginCustomCallbackDelegate fppurchaseiOSResponse=new SDKCorePluginCustomCallbackDelegate(purchaseiOSResponse);
 	static SDKCorePluginCustomCallbackDelegate fppurchaseAndroidResponse=new SDKCorePluginCustomCallbackDelegate(purchaseAndroidResponse);
 	
 	static SDKCorePluginCustomCallbackDelegate fpsetValueResponse=new SDKCorePluginCustomCallbackDelegate(setResponse);
 	static SDKCorePluginCustomCallbackDelegate fpgetValueResponse=new SDKCorePluginCustomCallbackDelegate(getResponse);
 	static SDKCorePluginCustomCallbackDelegate fppushResponse=new SDKCorePluginCustomCallbackDelegate(pushResponse);
 	static SDKCorePluginCustomCallbackDelegate fppullResponse=new SDKCorePluginCustomCallbackDelegate(pullResponse);
-	static SDKCorePluginCustomCallbackDelegate fpusersfindResponse=new SDKCorePluginCustomCallbackDelegate(usersfindResponse);*/
+	static SDKCorePluginCustomCallbackDelegate fpusersfindResponse=new SDKCorePluginCustomCallbackDelegate(usersfindResponse);
 	static SDKCorePluginCustomCallbackDelegate fpchangeUserNamesPasswordResponse=new SDKCorePluginCustomCallbackDelegate(changeUserNamesPasswordResponse);
 	
 	//universal
@@ -186,7 +184,7 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			
 			shag++;
 			
-			/*//put your reciepe hear
+			//put your reciepe hear
 			// Make the next button.
 			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "IOS inapp")) {
 				ResultText.text="GettingData!!!";
@@ -203,9 +201,9 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 				string signature="Jn0l3kVvxHbeCfDMxhjphwYiTYQM1EDd47H9Wj4R7aY6nhb4CuryvwqYtfjPV9KmZmophoJjVPy8/05N3qFToYiZTE60Ie060WwIBYkHLCNbwQD2A6eugeGUk0GtWZq75PibKkMGmVd/Lr0qpJDlXi+VjlBkc80aeNNV5Tc+GsNwU1L8zYfxNfMpk8ry9uYFCyfZUXNBoJRqtdIwSe/l0O2baPvRMv+4pCa6tJ+VPsC+ySAvBmPQesRXc28vXK6d2iPQJPURsQLuKKeh6jNx6urGGsr7iIaK/zxdvVwYx6BryzZR1s0hVParBw6hV0qJtCBk3FgQFtJILrIF0D3G0Q==";
 				colibriIAP.testpurchaseAndroid(fppurchaseAndroidResponse,key,signature,inappreciepeandroid);
 			}
-			shag++;*/
+			shag++;
 			
-			/*if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "set")) {
+			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "set")) {
 				ResultText.text="GettingData!!!";
 				user.setValue(fpsetValueResponse,"MyClassInst",new MyClass("object.0", new Vector3(20,21,22), new Vector3(2,2,2), Quaternion.identity, null));
 			}
@@ -232,7 +230,7 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 				ResultText.text="GettingData!!!";
 				user.usersfind(fpusersfindResponse,"{\"query\":{\"password\":\"123\"},\"fields\":{\"username\":1},\"limit\":1}");
 			}
-			shag++;*/
+			shag++;
 			
 			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "changename")) {
 				ResultText.text="GettingData!!!";
