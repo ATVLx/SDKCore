@@ -18,7 +18,8 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 	//string uuid = "da737fec-358d-463b-862c-c9a7a225df5f";
 	string uuid = "";
 	//string url = "http://api.cas.gs";
-	string url = "http://172.27.7.65:3000";
+	//string url = "http://172.27.7.65:3000";
+	string url = "http://10.27.1.53:3000";
 	//string url = "http://api.sggs.eu";
 	
 	Entity object1;
@@ -228,7 +229,8 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			}
 			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2+centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "usersfind")) {
 				ResultText.text="GettingData!!!";
-				user.usersfind(fpusersfindResponse,"{\"query\":{\"password\":\"123\"},\"fields\":{\"username\":1},\"limit\":1}");
+				//user.usersfind(fpusersfindResponse,"{\"query\":{\"password\":\"123\"},\"fields\":{\"username\":1},\"limit\":1}");
+				user.usersfind(fpusersfindResponse,"{}");
 			}
 			shag++;
 			
@@ -264,7 +266,8 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			
 			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2+centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "entitiesfind")) {
 				ResultText.text="GettingData!!!";
-				apples.entitiesfind(fpuniversalResponse,"{\"limit\":5}");
+				apples.entitiesfind(fpuniversalResponse,"{\"limit\":10}");
+				//apples.entitiesfind(fpuniversalResponse,"{}");
 			}
 			
 			shag++;
@@ -296,6 +299,11 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "entitiescreate")) {
 				ResultText.text="GettingData!!!";
 				apples.entitiescreate(fpuniversalResponse);
+			}
+			
+			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2+centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "entitiessaveall")) {
+				ResultText.text="GettingData!!!";
+				apples.entitiessaveall(fpuniversalResponse);
 			}
 			
 		}

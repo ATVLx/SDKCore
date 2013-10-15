@@ -129,6 +129,14 @@ namespace Colibry {
 			SDKCorePlugin.SDKCorePluginSendRequest(customsign,ColibryEntitiesCmds.ENTITIES_CREATE, requeststring,sdkResponse,fp);
 		}
 		
+		public void entitiessaveall(SDKCorePluginCustomCallbackDelegate fp)
+		{
+			foreach (var value in EntityDictionary.Values)
+			{
+				entitysave (fp,value as Entity);
+			}
+		}
+		
 		
 		//for entity
 		public void entitycreate(SDKCorePluginCustomCallbackDelegate fp, Entity inobject)
@@ -428,8 +436,8 @@ namespace Colibry {
 			{
 				clearedsignature=RemoveFirstPartSign(clearedsignature);
 			}
-			Debug.Log ("ininfo.sign="+ininfo.signature);
-			Debug.Log ("objecthashcode="+objecthashcode);
+			//Debug.Log ("ininfo.sign="+ininfo.signature);
+			//Debug.Log ("objecthashcode="+objecthashcode);
 			
 			JSON root=new JSON();
 			root.serialized=ininfo.jsonresult;
