@@ -18,6 +18,8 @@ namespace Colibry {
 			EntitiesDictionary.Add (collectionname,this);
     	}
 		
+		public int flagIsPrivate=0;
+		
 		//словарь всех объектов
 		public Dictionary<string,Entity> EntityDictionary=new Dictionary<string,Entity>();
 		
@@ -101,7 +103,7 @@ namespace Colibry {
 			
 			string requeststring;
 			
-			requeststring="{\"collection\":\""+collectionname+"\",\"object\":"+roottosend.serialized+"}";
+			requeststring="{\"collection\":\""+collectionname+"\",\"p\":"+flagIsPrivate+",\"object\":"+roottosend.serialized+"}";
 			
 			string customsign=AddToSign(ColibryEntitiesRequestSigns.ENTITIES_FIND);							
 			SDKCorePlugin.SDKCorePluginSendRequest(customsign,ColibryEntitiesCmds.ENTITIES_FIND, requeststring,sdkResponse,fp);
@@ -123,7 +125,7 @@ namespace Colibry {
 			
 			string requeststring;
 			
-			requeststring="{\"collection\":\""+collectionname+"\",\"object\":"+roottosend.serialized+"}";
+			requeststring="{\"collection\":\""+collectionname+"\",\"p\":"+flagIsPrivate+",\"object\":"+roottosend.serialized+"}";
 			
 			string customsign=AddToSign(ColibryEntitiesRequestSigns.ENTITIES_CREATE);							
 			SDKCorePlugin.SDKCorePluginSendRequest(customsign,ColibryEntitiesCmds.ENTITIES_CREATE, requeststring,sdkResponse,fp);
@@ -148,8 +150,19 @@ namespace Colibry {
 			string objectstring=inobject.ToJSON().serialized;
 			EntityDictionary.Add(customsign,inobject);
 			
-			requeststring="{\"collection\":\""+collectionname+"\",\"object\":"+objectstring+"}";
+			requeststring="{\"collection\":\""+collectionname+"\",\"p\":"+flagIsPrivate+",\"object\":"+objectstring+"}";
 			SDKCorePlugin.SDKCorePluginSendRequest(customsign,ColibryEntitiesCmds.ENTITY_CREATE, requeststring,sdkResponse,fp);
+		}	
+		
+		public void entityfind(SDKCorePluginCustomCallbackDelegate fp, Entity inobject)
+		{			
+			string customsign=inobject.id+"."+ColibryEntitiesRequestSigns.ENTITY_FIND;	
+			customsign=AddToSign(customsign);
+			string requeststring="";
+			string objectstring="{\"id\":\""+inobject.id+"\"}";
+						
+			requeststring="{\"collection\":\""+collectionname+"\",\"object\":"+objectstring+"}";
+			SDKCorePlugin.SDKCorePluginSendRequest(customsign,ColibryEntitiesCmds.ENTITY_FIND, requeststring,sdkResponse,fp);
 		}	
 		
 		public void entitysave(SDKCorePluginCustomCallbackDelegate fp, Entity inobject)
@@ -283,6 +296,19 @@ namespace Colibry {
 			else
 			{
 				Debug.Log ("Unknown object sign hashcode="+objectHashCode);
+			}
+		}
+		
+		private void entityfindResponse(JSON root,string objectHashCode)
+		{
+		    if(EntityDictionary.ContainsKey(objectHashCode))
+			{
+				Entity curobject=EntityDictionary[objectHashCode];
+				curobject=curobject.JSONtoMyClass(root) as Entity;
+			}
+			else
+			{
+				Debug.Log ("Unknown object sign id="+objectHashCode);
 			}
 		}
 		
@@ -437,6 +463,7 @@ namespace Colibry {
 				clearedsignature=RemoveFirstPartSign(clearedsignature);
 			}
 			//Debug.Log ("ininfo.sign="+ininfo.signature);
+			Debug.Log ("clearedsignature="+clearedsignature);
 			//Debug.Log ("objecthashcode="+objecthashcode);
 			
 			JSON root=new JSON();
@@ -458,6 +485,11 @@ namespace Colibry {
 				if(clearedsignature==ColibryEntitiesRequestSigns.ENTITY_CREATE)
 			    {
 			        entitycreateResponse(root,ininfo.signature);
+			    }
+				
+				if(clearedsignature==ColibryEntitiesRequestSigns.ENTITY_FIND)
+			    {
+			        entityfindResponse(root,objecthashcode);
 			    }
 				
 				if(clearedsignature==ColibryEntitiesRequestSigns.ENTITY_SAVE)

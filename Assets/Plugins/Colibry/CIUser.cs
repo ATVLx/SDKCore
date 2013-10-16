@@ -90,17 +90,13 @@ namespace Colibry {
 		    {
 		        CIRequestComponent.requestType=RequestType.Del;
 		    }else
-		    if(cmd.Contains("users."))
-		    {
-		        CIRequestComponent.requestType=RequestType.Users;
-		    }else
 		    if(cmd.Contains("user."))
 		    {
 		        CIRequestComponent.requestType=RequestType.User;
 		    }
 		    else
 		    {
-		        CIRequestComponent.requestType=RequestType.Users;
+		        CIRequestComponent.requestType=RequestType.User;
 		    }
 		}
 		

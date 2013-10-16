@@ -9,7 +9,7 @@ using System.Reflection;
 namespace Colibry {
 	public class Entity: ColibrySerializeHelperCustomClass
 	{	
-		private string _id=null;
+		private string _id=null;		
 		public string id
 	    {
 	        get { return _id; }

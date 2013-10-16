@@ -15,11 +15,11 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 	TestEntities1 apples;
 	ColibryCoreNative colibryCoreNative;
 	
-	//string uuid = "da737fec-358d-463b-862c-c9a7a225df5f";
-	string uuid = "";
-	//string url = "http://api.cas.gs";
+	string uuid = "d54a242a-4a4f-4048-89d8-8a1f29a4791d";
+	//string uuid = "";
+	string url = "http://api.cas.gs";
 	//string url = "http://172.27.7.65:3000";
-	string url = "http://10.27.1.53:3000";
+	//string url = "http://172.27.7.65:3000";
 	//string url = "http://api.sggs.eu";
 	
 	Entity object1;
@@ -63,6 +63,7 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			
 			apples=new TestEntities1();
 			apples.collectionname="apples";
+			apples.flagIsPrivate=1;
 			apples.collectiontype=typeof(MyClass2);
 			apples.initialize();			
 			AddSerialize();
@@ -306,6 +307,12 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 				apples.entitiessaveall(fpuniversalResponse);
 			}
 			
+			shag++;
+			
+			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "entityfind")) {
+				ResultText.text="GettingData!!!";
+				apples.entityfind(fpuniversalResponse,object1);
+			}
 		}
 		
 		// Make a text field that modifies stringToEdit.
