@@ -133,7 +133,8 @@ namespace Colibry {
 		
 		public void entitiessaveall(SDKCorePluginCustomCallbackDelegate fp)
 		{
-			foreach (var value in EntityDictionary.Values)
+			Dictionary<string,Entity> Dictionary=EntityDictionary; 
+			foreach (var value in Dictionary.Values)
 			{
 				entitysave (fp,value as Entity);
 			}

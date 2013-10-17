@@ -71,7 +71,7 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 	}
 	
 	void AddSerialize () {
-		/*user.stringProperty="string44";
+		user.stringProperty="string44";
 			user.intProperty=10;
 			user.boolProperty=true;
 			user.floatProperty=0.2f;
@@ -113,7 +113,7 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			user.MyClassInst2=new MyClass2("MyClass2.object.1", new Vector3(1,1,1), new Vector3(1,1,1), new Quaternion(100,100,100,100),null);
 
 			user.MyClassArray=new MyClass[]{new MyClass("object.1",new Vector3(20,20,20), new Vector3(2,2,2), Quaternion.identity,new int[] {1,2,3,4,5}),
-				new MyClass("object.2",new Vector3(30,30,30), new Vector3(3,3,3), Quaternion.identity,new int[] {1,2,3,4,5})};*/
+				new MyClass("object.2",new Vector3(30,30,30), new Vector3(3,3,3), Quaternion.identity,new int[] {1,2,3,4,5})};
 			
 			
 			user.MyClass2Array=new MyClass2[]{new MyClass2("object.1",new Vector3(20,20,20), new Vector3(2,2,2), Quaternion.identity,null),
@@ -152,12 +152,12 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			// Make the next button. 
 			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "signup")) {
 				ResultText.text="GettingData!!!";
-				user.signUp(fpsignUpResponse);
+				user.signUp(fpsignUpResponse,"device",SystemInfo.deviceUniqueIdentifier);
 			}
 			//Make the next button.
 			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2+centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "signin")) {
 				ResultText.text="GettingData!!!";
-				user.signIn(fpsignInResponse);	
+				user.signIn(fpsignInResponse,"device",SystemInfo.deviceUniqueIdentifier);	
 			}
 			shag++;
 		}
@@ -235,9 +235,9 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			}
 			shag++;
 			
-			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "changename")) {
+			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2-centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "signadd")) {
 				ResultText.text="GettingData!!!";
-				user.changeUserNamesPassword(fpchangeUserNamesPasswordResponse);
+				user.signAdd(fpchangeUserNamesPasswordResponse,"login","{\"username\":\""+playerName+"\",\"password\":\"123\"}");
 			}
 			
 			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2+centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "entitycreate")) {
@@ -328,9 +328,6 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 		
 		// Make a text field that modifies stringToEdit.
 		playerName = GUI.TextField (new Rect(Screen.width/2-100-100, 20, 200, 40), playerName, 20);
-		user._username = playerName;
-		user._password = "123";
-		user._email = "";
 	}
 	
 	//universal	

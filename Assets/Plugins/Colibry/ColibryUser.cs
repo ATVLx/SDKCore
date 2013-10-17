@@ -8,11 +8,7 @@ using WyrmTale;
 
 namespace Colibry {	
 	public class ColibryUser:ColibryBaseEntities
-	{		
-		public string _username;
-		public string _password;
-		public string _email;
-		
+	{				
 		public string id=null;
 		
 		protected static ColibryUser _instance=null;
@@ -41,14 +37,27 @@ namespace Colibry {
 			return root;	
 		}
 		
-		public void signUp(SDKCorePluginCustomCallbackDelegate fp){
-	 		SDKCorePlugin.SDKCorePluginSendRequest(ColibryUserRequestSigns.SIGN_UP,ColibryUserCmds.SIGN_UP,"{\"username\":\""+_username+"\",\"password\":\""+_password+"\",\"email\":\""+_email+"\"}",sdkResponse,fp);
+		public void signUp(SDKCorePluginCustomCallbackDelegate fp, string idtype, string id){
+			if(idtype=="login")
+			{
+				SDKCorePlugin.SDKCorePluginSendRequest(ColibryUserRequestSigns.SIGN_UP,ColibryUserCmds.SIGN_UP, "{\"type\":\""+idtype+"\",\"id\":"+id+"}",sdkResponse,fp);
+			}
+			else
+			{
+				SDKCorePlugin.SDKCorePluginSendRequest(ColibryUserRequestSigns.SIGN_UP,ColibryUserCmds.SIGN_UP, "{\"type\":\""+idtype+"\",\"id\":\""+id+"\"}",sdkResponse,fp);
+			}
 		}
 		
-		public void signIn(SDKCorePluginCustomCallbackDelegate fp)
+		public void signIn(SDKCorePluginCustomCallbackDelegate fp,string idtype, string id)
 		{
-		    //get id
-			SDKCorePlugin.SDKCorePluginSendRequest(ColibryUserRequestSigns.SIGN_IN,ColibryUserCmds.SIGN_IN, "{\"username\":\""+_username+"\",\"password\":\""+_password+"\"}",sdkResponse,fp);
+			if(idtype=="login")
+			{
+				SDKCorePlugin.SDKCorePluginSendRequest(ColibryUserRequestSigns.SIGN_IN,ColibryUserCmds.SIGN_IN, "{\"type\":\""+idtype+"\",\"id\":"+id+"}",sdkResponse,fp);
+			}
+			else
+			{
+				SDKCorePlugin.SDKCorePluginSendRequest(ColibryUserRequestSigns.SIGN_IN,ColibryUserCmds.SIGN_IN, "{\"type\":\""+idtype+"\",\"id\":\""+id+"\"}",sdkResponse,fp);
+			}
 		}
 		
 		public void signOut(SDKCorePluginCustomCallbackDelegate fp)
@@ -187,10 +196,18 @@ namespace Colibry {
 			}		
 		}
 	
-		public void changeUserNamesPassword(SDKCorePluginCustomCallbackDelegate fp)
+		public void signAdd(SDKCorePluginCustomCallbackDelegate fp,string idtype, string id)
 		{
-			string newNames = "{\"username\":\""+_username+"\",\"password\":\""+_password+"\",\"email\":\""+_email+"\"}";
-			SDKCorePlugin.SDKCorePluginSendRequest(ColibryUserRequestSigns.CHANGE_USER_NAME_PASSWORD,ColibryUserCmds.SAVE_USER, newNames,sdkResponse,fp);
+			string requeststring="";
+			if(idtype=="login")
+			{
+				requeststring="{\"type\":\""+idtype+"\",\"id\":"+id+"}";
+			}
+			else
+			{
+				requeststring="{\"type\":\""+idtype+"\",\"id\":\""+id+"\"}";
+			}
+			SDKCorePlugin.SDKCorePluginSendRequest(ColibryUserRequestSigns.SIGN_ADD,ColibryUserCmds.SIGN_ADD, requeststring,sdkResponse,fp);
 		}
 		
 		//responses
@@ -297,7 +314,7 @@ namespace Colibry {
 			Debug.Log ("Error c# = "+root.serialized);
 		}
 		
-		private void changeUserNamesPasswordResponse(JSON root)
+		private void signaddResponse(JSON root)
 		{
 			//do something
 		}
@@ -374,9 +391,9 @@ namespace Colibry {
 			        deleteUserResponse(root);
 			    }
 				
-				if(ininfo.signature==ColibryUserRequestSigns.CHANGE_USER_NAME_PASSWORD)
+				if(ininfo.signature==ColibryUserRequestSigns.SIGN_ADD)
 			    {
-			        changeUserNamesPasswordResponse(root);
+			        signaddResponse(root);
 			    }
 	
 			}

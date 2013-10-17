@@ -38,6 +38,13 @@ public class MyClass2: Entity
         set { _rotation = value; }
     }
 	
+	private Quaternion _rotation2;
+	public Quaternion rotation2
+    {
+        get { return _rotation2; }
+        set { _rotation2 = value; }
+    }
+	
 	private int[] _intarray;
 	
 	public int[] intarray

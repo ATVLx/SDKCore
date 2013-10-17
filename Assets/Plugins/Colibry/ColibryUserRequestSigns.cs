@@ -15,7 +15,7 @@ namespace Colibry {
 		public static string PUSH = "push";
 		public static string PULL = "pull";
 		
-		public static string CHANGE_USER_NAME_PASSWORD = "changeUserNamePassword";
+		public static string SIGN_ADD = "signAdd";
 	    public static string USERS_FIND = "usersfind";
 		public static string DELETE_USER = "deleteUser";
 	};
@@ -31,6 +31,7 @@ namespace Colibry {
 		public static string GET_VALUE = "user.get";
 		public static string PUSH = "user.push";
 		public static string PULL = "user.pull";
+		public static string SIGN_ADD = "user.signadd";
 		
 	    public static string USERS_FIND = "users.find";
 		public static string DELETE_USER = "user.delete";
