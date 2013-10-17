@@ -316,7 +316,18 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 		}
 		
 		// Make a text field that modifies stringToEdit.
-		playerName = GUI.TextField (new Rect(Screen.width/2-100, 20, 200, 40), playerName, 20);
+		string newuuid = GUI.TextField (new Rect(Screen.width/2, 20, 250, 40), uuid, 40);
+		if(newuuid!=uuid)
+		{
+			uuid=newuuid;
+			colibryCoreNative.setUuid(uuid);
+			colibryCoreNative.initialize();
+		}
+		
+		
+		
+		// Make a text field that modifies stringToEdit.
+		playerName = GUI.TextField (new Rect(Screen.width/2-100-100, 20, 200, 40), playerName, 20);
 		user._username = playerName;
 		user._password = "123";
 		user._email = "";

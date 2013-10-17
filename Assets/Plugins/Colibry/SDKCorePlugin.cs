@@ -1,4 +1,4 @@
-//#define SDKCORE_MAKE_ALL_IN_WWW
+#define SDKCORE_MAKE_ALL_IN_WWW
 
 using UnityEngine;
 using System.Collections;
