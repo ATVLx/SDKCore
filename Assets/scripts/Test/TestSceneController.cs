@@ -15,14 +15,14 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 	TestEntities1 apples;
 	ColibryCoreNative colibryCoreNative;
 	
-	string uuid = "d54a242a-4a4f-4048-89d8-8a1f29a4791d";
-	//string uuid = "";
-	string url = "http://api.cas.gs";
-	//string url = "http://172.27.7.65:3000";
+	//string uuid = "bc451097-ec4e-45dc-9bb6-03a8f35cca15";
+	string uuid = "";
+	//string url = "http://api.cas.gs";
+	string url = "http://172.27.7.65:3000";
 	//string url = "http://172.27.7.65:3000";
 	//string url = "http://api.sggs.eu";
 	
-	Entity object1;
+	MyClass2 object1;
 	
 	
 	public string inappreciepeios;
@@ -243,6 +243,7 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2+centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "entitycreate")) {
 				ResultText.text="GettingData!!!";
 				object1=new MyClass2("object.1",new Vector3(20,20,20), new Vector3(2,2,2), Quaternion.identity,null);
+				object1.floatpolerandom=Random.Range(0,200f);
 				apples.entitycreate(fpentitycreateResponse,object1);
 			}
 			
@@ -267,7 +268,8 @@ public class TestSceneController : Abstract,SDKCoreDelegate {
 			
 			if(GUI.Button(new Rect(Screen.width/2-buttonwidth/2+centerxsmex,upsmeh+shag*(buttonheight+between),buttonwidth,buttonheight), "entitiesfind")) {
 				ResultText.text="GettingData!!!";
-				apples.entitiesfind(fpuniversalResponse,"{\"limit\":10}");
+				//apples.entitiesfind(fpuniversalResponse,"{\"limit\":10}");
+				apples.entitiesfind(fpuniversalResponse,"{\"fields\":{\"floatpolerandom\": { \"$lte\": 20 }}}");
 				//apples.entitiesfind(fpuniversalResponse,"{}");
 			}
 			

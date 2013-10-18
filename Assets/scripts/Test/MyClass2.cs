@@ -17,6 +17,13 @@ public class MyClass2: Entity
         set { _name = value; }
     }
 	
+	private float _floatpolerandom;
+	public float floatpolerandom
+    {
+        get { return _floatpolerandom; }
+        set { _floatpolerandom = value; }
+    }
+	
 	private Vector3 _position;
 	public Vector3 position
     {

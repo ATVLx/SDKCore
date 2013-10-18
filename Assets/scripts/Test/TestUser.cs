@@ -121,6 +121,13 @@ public class TestUser : ColibryUser {
         set { _MyDictionaryString = value; }
     }
 	
+	private Dictionary<string,string> _InAppDict=new Dictionary<string,string>();
+	public Dictionary<string,string> InAppDict
+	{
+ 	   get { return _InAppDict; }
+ 	   set { _InAppDict = value; }
+	}
+	
 	private Dictionary<string,int> _MyDictionaryInt=new Dictionary<string,int>();
 	
 	public Dictionary<string,int> MyDictionaryInt

@@ -238,7 +238,7 @@ namespace Colibry {
 		public void entitydelete(SDKCorePluginCustomCallbackDelegate fp, Entity inobject)
 		{			
 			JSON roottosend=new JSON();
-			string customsign=inobject.id+"."+ColibryEntitiesRequestSigns.ENTITY_SET;	
+			string customsign=inobject.id+"."+ColibryEntitiesRequestSigns.ENTITY_DELETE;	
 			customsign=AddToSign(customsign);
 			string requeststring="";
 			
@@ -408,8 +408,6 @@ namespace Colibry {
 		
 		private void entitydeleteResponse(JSON root,string objectHashCode)
 		{
-		    Debug.Log (root.serialized);
-			Debug.Log (objectHashCode);
 		    if(EntityDictionary.ContainsKey(objectHashCode))
 			{
 				EntityDictionary.Remove(objectHashCode);
@@ -464,7 +462,7 @@ namespace Colibry {
 				clearedsignature=RemoveFirstPartSign(clearedsignature);
 			}
 			//Debug.Log ("ininfo.sign="+ininfo.signature);
-			Debug.Log ("clearedsignature="+clearedsignature);
+			//Debug.Log ("clearedsignature="+clearedsignature);
 			//Debug.Log ("objecthashcode="+objecthashcode);
 			
 			JSON root=new JSON();
